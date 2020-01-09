@@ -7,31 +7,44 @@ const Employee = require("../Develop/lib/Employee");
 // const axios = require("axios");
 
 //Questions array used to prompt user.........
-const questions = [
+function promptUser() {
+ inquire.prompt([
     {
-      type: "input",
-      message: "Employee Name?",
-      name: "name"
-    },
-    {
-      type: "input",
-      message: "Employee id?",
-      name: "id"
-    },
-    {
-      type: 'list',
-      name: 'role',
-      message: 'Employee Title?',
-      choices: [
-        'Engineer',
-        'Intern',
-        'Manager'
-      ]
-    }
-  ];
-//   inquirer.prompt(questions);
-
-  const employee = new Employee();
-
-  inquirer.prompt(questions).then(employee);
+        type: "input",
+        message: "What is your manager's name?",
+        name: "name"
+      },
+      {
+        type: "input",
+        message: "What is your manager's id?",
+        name: "id"
+      },
+      {
+        type: "input",
+        message: "What is your manager's email?",
+        name: "email"
+      },
+      {
+        type: "input",
+        message: "What is your manager's office number?",
+        name: "office number"
+      },
+      {
+        type: 'list',
+        name: 'role',
+        message: 'What type of employee would you like to add?',
+        choices: [
+          'Engineer',
+          'Intern',
+        ]
+      }
+    ]);
  
+}
+
+promptUser();
+
+
+
+//   inquirer.prompt(questions);
+//   inquirer.prompt(employeeInfo);

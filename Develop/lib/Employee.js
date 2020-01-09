@@ -1,23 +1,29 @@
 
-function Employee(name, id, title) {
-    this.name = name;
-    this.id = id;
-    this.title = title;
 
-    this.getName = function() {
-        console.log(this.name);
+
+class Employee {
+    constructor (name, id, email) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        
+        
+    }
+    getName() {
+        return this.name;
     }
 
-    this.getId = function() {
-        console.log(this.id);
+    getId() {
+        return this.id;
     }
 
-    this.getEmail = function() {
-        console.log(this.email);
+    getEmail() {
+        return this.email;
     }
 
-    this.getRole = function() {
-        console.log(this.role);
+    getRole() {
+        return "Employee";
     }
 }
+
 module.exports = Employee;
