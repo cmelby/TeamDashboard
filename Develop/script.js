@@ -1,5 +1,5 @@
 
-const AddTeam= require('./AddTeam');
+const AddTeam = require('./AddTeam');
 
 const newTeam = new AddTeam();
 
