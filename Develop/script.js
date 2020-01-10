@@ -1,6 +1,17 @@
 
-const AddTeam = require('./AddTeam');
 
-const newTeam = new AddTeam();
 
-newTeam.askForManagerInfo();
+
+var teamArr = [];
+
+
+
+
+module.exports = teamArr;
+
+
+
+
+// function generateMainHTML() {
+
+// }
