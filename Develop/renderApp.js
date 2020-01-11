@@ -28,13 +28,13 @@ async function renderApp(roles) {
   ])
 //Creating template.....
   const managerDiv = roles.filter(employee => employee instanceof Manager)
-          .map(employee => {
-            let template = managerTemplate;
-            for (const key in employee) {
-              template = createTemplate(template, key, employee[key]);
-            }
-            return template;
-          })
+    .map(employee => {
+      let template = managerTemplate;
+      for (const key in employee) {
+        template = createTemplate(template, key, employee[key]);
+      }
+      return template;
+    })
        
   //Creating template.....
   const engineerDiv = roles.filter(employee => employee instanceof Engineer)
@@ -66,5 +66,5 @@ async function renderApp(roles) {
 
 }
 
-
+//Exporting our application....
 module.exports = renderApp
