@@ -1,20 +1,19 @@
 
-// const fs = require("fs");
-// const generateHTML = require("./generateHTML");
-// const fs = require("fs");
-// const axios = require("axios");
-
 const inquirer = require("inquirer");
-const teamArr = require("./script");
-const Employee = require("../Develop/lib/Employee");
 const Manager= require("../Develop/lib/Manager");
 const Engineer = require("../Develop/lib/Engineer");
 const Intern = require("../Develop/lib/Intern");
 
+const renderApp = require("./renderApp");
+
+var teamArr = []
+
+//start the prompt...
+askForManagerInfo();
 
   // Prompts the user for Manager Info
   function askForManagerInfo() {
-    return inquirer
+    inquirer
       .prompt([
         {
           type: "input",
@@ -35,39 +34,49 @@ const Intern = require("../Develop/lib/Intern");
           type: "input",
           message: "What is your manager's office number?",
           name: "officeNumber"
-        },     
-        {
-          type: 'list',
-          name: 'role',
-          message: 'What type of employee would you like to add?',
-          choices: [
-            'Engineer',
-            'Manager',
-            'Intern',
-            'No',
-          ]
         }
-      ]).then(val => {
-    
-        teamArr.push(new Manager(val.name, val.id, val.email, val.officeNumber))
-        if (val.role === 'Engineer') {
-          askForEngineerInfo();
-        } 
-        else if (val.role === 'Manager') {
-          askForManagerInfo();
-        } 
-        else if (val.role === 'Intern') {
-          askForInternInfo();
-        }
-        else if (val.choice === 'No') {
-          quit();
-        }
-      });
+      ]).then(function(response) {
+        const manager = new Manager(response.name, response.id, response.email, response.officeNumber)
+        teamArr.push(manager)
+        console.log(teamArr)
+        askForRole()
+      })
       
   }
+// Prompts the user if they would like to add another team member.......
+function askForRole() {
+        inquirer.prompt([
+          {
+            type: 'list',
+            name: 'role',
+            message: 'What type of employee would you like to add?',
+            choices: [
+              'Engineer?',
+              'Manager?',
+              'Intern?',
+              'I dont need to add anymore Team Members at this time.',
+            ]
+          }
+        ]).then(function(response) {
+          if (response.role === 'Engineer?') {
+            askForEngineerInfo()
+          } 
+          if (response.role === 'Manager?') {
+            askForManagerInfo()
+          } 
+          else if (response.role === 'Intern?') {
+            askForInternInfo()
+          }
+          else if (response.role === 'I dont need to add anymore Team Members at this time.') {
+            renderApp(teamArr)
+          }
+        })
+
+      }
+ 
   // Prompts the user for Engineer Info.....
   function askForEngineerInfo() {
-    return inquirer
+    inquirer
       .prompt([
         {
           type: "input",
@@ -88,41 +97,19 @@ const Intern = require("../Develop/lib/Intern");
           type: "input",
           message: "What is your Engineers GitHub username?",
           name: "username"
-        },
-        {
-          type: 'list',
-          name: 'role',
-          message: 'What type of employee would you like to add?',
-          choices: [
-            'Engineer',
-            'Manager',
-            'Intern',
-            'No',
-          ]
         }
-      ]).then(val => {
-        
-        teamArr.push(new Engineer(val.name, val.id, val.email, val.officeNumber))
-
-        if (val.role === 'Engineer') {
-          askForEngineerInfo();
-        } 
-        else if (val.role === 'Manager') {
-          askForManagerInfo();
-        } 
-        else if (val.role === 'Intern') {
-          askForInternInfo();
-        }
-        else if (val.choice === 'No') {
-          quit();
-        }
-      });
+      ]).then(function(response) {
+        const engineer = new Engineer(response.name, response.id, response.email, response.username)
+        teamArr.push(engineer)
+        console.log(teamArr)
+        askForRole()
+      })
       
   }
   
 // Prompts the user for Intern Info.......
   function askForInternInfo() {
-    return inquirer
+    inquirer
       .prompt([
         {
           type: "input",
@@ -143,52 +130,12 @@ const Intern = require("../Develop/lib/Intern");
           type: "input",
           message: "What is your Inturns School?",
           name: "school"
-        },
-        {
-          type: 'list',
-          name: 'role',
-          message: 'What type of employee would you like to add?',
-          choices: [
-            'Engineer',
-            'Manager',
-            'Intern',
-            'No',
-          ]
         }
-      ]).then(val => {
-     
-        teamArr.push(new Intern(val.name, val.id, val.email, val.officeNumber))
-   
-        if (val.role === 'Engineer') {
-          askForEngineerInfo();
-        } 
-        else if (val.role === 'Manager') {
-          askForManagerInfo();
-        } 
-        else if (val.role === 'Intern') {
-          askForInternInfo();
-        }
-        else if (val.choice === 'No') {
-          quit();
-        }
-      });
+      ]).then(function(response) {
+        const intern = new Intern (response.name, response.id, response.email, response.officeNumber)
+        teamArr.push(intern)
+        console.log(teamArr)
+        askForRole()
+      })
       
   }
-//start the prompt...
-
-askForManagerInfo();
-// Logs goodbye and exits the node app..
-  function quit() {
-    console.log("\nThank You!");
-    process.exit(0);
-  }
-
-// module.exports = AddTeam;
-
-
-// going to use individual functions for each prompt and to gather only the new peices of information,
-//the .then function is going to instaciate a new varible calling on our calsses 
-// then we will also have a switch case for the new prompt. 
-//the fs.writefile will create a write to the outputfile then function generate html that generates the file in that folder.
-
-//in the .then we need to create a "new" employee 
