@@ -1,3 +1,11 @@
-.display-4, h3 {
+.display-4 {
     font-family: 'Work Sans', sans-serif;
+}
+
+.card-title, h3, h4 {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+i {
+    padding-right: 3px;
 }
