@@ -48,10 +48,8 @@ const Intern = require("../Develop/lib/Intern");
           ]
         }
       ]).then(val => {
-        console.log("BEWFORE", teamArr )
+    
         teamArr.push(new Manager(val.name, val.id, val.email, val.officeNumber))
-       
-        console.log("AFTER", teamArr);
         if (val.role === 'Engineer') {
           askForEngineerInfo();
         } 
@@ -103,9 +101,9 @@ const Intern = require("../Develop/lib/Intern");
           ]
         }
       ]).then(val => {
-        console.log("BEWFORE", teamArr )
+        
         teamArr.push(new Engineer(val.name, val.id, val.email, val.officeNumber))
-        console.log("AFTER", teamArr);
+
         if (val.role === 'Engineer') {
           askForEngineerInfo();
         } 
@@ -158,9 +156,9 @@ const Intern = require("../Develop/lib/Intern");
           ]
         }
       ]).then(val => {
-        console.log("BEWFORE", teamArr )
+     
         teamArr.push(new Intern(val.name, val.id, val.email, val.officeNumber))
-        console.log("AFTER", teamArr);
+   
         if (val.role === 'Engineer') {
           askForEngineerInfo();
         } 
@@ -177,9 +175,9 @@ const Intern = require("../Develop/lib/Intern");
       
   }
 //start the prompt...
-askForManagerInfo();
 
-  // Logs goodbye and exits the node app
+askForManagerInfo();
+// Logs goodbye and exits the node app..
   function quit() {
     console.log("\nThank You!");
     process.exit(0);
