@@ -1,6 +1,6 @@
-# template-engine
+# Team Dashboard
 
- Node CLI application that takes in information about employees and generates an HTML webpage that displays summaries for each person on the team. Managers want quick access to their team's basic info such as email, gitHub usernames, and ID's. By prompts prompting the user for information about the team manager and then information about the team members, the user can build a quick and convenient dashboard to access information. The user can input any number of team members and roles. Once the user has entered all members on the team the application generate an HTML file they can then access on the browser. Each card will display the following information:
+Team Dashboard is a Node CLI application that takes in information about employees and generates an HTML webpage that displays summaries for each person on the team. Managers want quick access to their team's basic info such as email, gitHub usernames, and ID's. By prompts prompting the user for information about the team manager and then information about the team members, the user can build a quick and convenient dashboard to access information. The user can input any number of team members and roles. Once the user has entered all members on the team the application generate an HTML file they can then access on the browser. Each card will display the following information:
 
 - Employee Name
 - Employee Title
